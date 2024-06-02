@@ -1,0 +1,18 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Weather Management</h2>
+    <form [formGroup]="form" (ngSubmit)="getWeather()">
+        <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Get weather</button>
+        </div>
+    </form>
+
+    <div *ngIf="weatherData" class="mt-5 card">
+        <div class="card-body">
+            <h3 class="card-title">{{ weatherData.location.name }}</h3>
+            <p class="card-text">Condition: {{ weatherData.current.condition.text }}</p>
+            <p class="card-text">Temperature: {{ weatherData.current.temp_c }}°C</p>
+            <p class="card-text">Humidity: {{ weatherData.current.humidity }}%</p>
+        </div>
+    </div>
+</div>

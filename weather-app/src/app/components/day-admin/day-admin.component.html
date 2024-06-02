@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Forecast Management</h2>
+    <form [formGroup]="form" (ngSubmit)="getForecast()">
+        <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Get weather</button>
+        </div>
+    </form>
+
+    <div *ngIf="forecastData" class="mt-5">
+        <h3 class="text-center">Weather forecast for {{ model.city }}</h3>
+        <div *ngFor="let day of forecastData.forecast.forecastday" class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ day.date | date }}</h5>
+                <p class="card-text">Condition: {{ day.day.condition.text }}</p>
+                <p class="card-text">Max. temperature: {{ day.day.maxtemp_c }}°C</p>
+                <p class="card-text">Min. temperature: {{ day.day.mintemp_c }}°C</p>
+                <p class="card-text">Humidity: {{ day.day.avghumidity }}%</p>
+            </div>
+        </div>
+    </div>
+</div>
